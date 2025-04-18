@@ -1,0 +1,58 @@
+:root {
+  --main-bg-color: #7d8aa4;
+  --main-text-color: #e6e6e6;
+  --header-bg-color: #20232a;
+  --header-text-color: #ffffff;
+}
+
+.container {
+  width: 550px;
+  margin: 0px auto;
+    padding: 20px;
+  background-color: var(--main-bg-color);
+  border: 1px solid #ccc;
+  border-radius: 7px;
+}
+.city-name {
+  font-size: 50px;
+color: var(--header-text-color);
+  margin-top: 1px;
+}
+.current-day {
+    color: var(--header-text-color)
+}
+.image-icon {
+    width: 90px;
+    margin: 10px auto;
+    align-items: center;
+}
+.current-weather-block {
+    margin-top: 20px;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+.current-temperature {
+  font-size: 80px;
+  text-align: right;
+  color: var(--header-text-color)
+}
+.temperature-measurement {
+    text-align: left;
+    padding: 0;
+    margin-top: 15px;
+    font-size: 18px;
+    color: var(--header-text-color)
+}
+.weather-feels {
+  text-align: left;
+  margin-top: 15px;
+  color: var(--main-text-color);
+  line-height: 20px;
+  font-size: 14px;
+}
+.physics {
+    margin-top: 20px;
+    color: var(--main-text-color)
+}
