@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Weather.css";
+import FormattedDate from "./FormattedDay";
 import axios from "axios";
 
 export default function Weather() {
@@ -8,10 +9,10 @@ export default function Weather() {
   }); /*it has a key of READY but it FALSE by default*/
 
   function handleSubmit(response) {
-    console.log(response.data);
+    /*console.log(response.data);*/
     setWeatherData({
       ready: true,
-      date: "wednesday, 17:59",
+      date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
       wind: response.data.wind.speed,
       humidity: response.data.main.humidity,
@@ -26,7 +27,13 @@ export default function Weather() {
       <div className="container">
         <h1 className="city-name">{weatherData.city}</h1>
 
-        <div className="current-day text-capitalize">{weatherData.date}</div>
+        <div className="current-day text-capitalize">
+          <ul>
+            <li>
+              <FormattedDate date={weatherData.date} />
+            </li>
+          </ul>
+        </div>
 
         <div className="current-weather-container">
           <div className="current-weather-block row">
