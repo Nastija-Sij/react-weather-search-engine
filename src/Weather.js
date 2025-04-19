@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import "./Weather.css";
-import FormattedDate from "./FormattedDay";
+
+import WeatherInfo from "./WeatherInfo";
 import axios from "axios";
 
-export default function Weather() {
+export default function Weather(props) {
+  const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({
     ready: false,
   }); /*it has a key of READY but it FALSE by default*/
 
-  function handleSubmit(response) {
+  function handleResponse(response) {
     /*console.log(response.data);*/
     setWeatherData({
       ready: true,
@@ -22,64 +24,31 @@ export default function Weather() {
       description: response.data.weather[0].description,
     });
   }
-  if (weatherData.ready) {
-    return (
-      <div className="container">
-        <h1 className="city-name">{weatherData.city}</h1>
-
-        <div className="current-day text-capitalize">
-          <ul>
-            <li>
-              <FormattedDate date={weatherData.date} />
-            </li>
-          </ul>
-        </div>
-
-        <div className="current-weather-container">
-          <div className="current-weather-block row">
-            <div className="weather-icon col-sm-3">
-              <img
-                src={weatherData.icon}
-                alt={weatherData.description}
-                className="image-icon"
-              />
-            </div>
-            <div className="weather-description col-sm-5 row">
-              <h2 className="current-temperature col-sm-8">
-                {Math.round(weatherData.temperature)}
-              </h2>
-              <div className="temperature-measurement col-sm-4">
-                {" "}
-                <a href="">°C</a> | <a href="">°F</a>
-              </div>
-            </div>
-
-            <div className="weather-feels col-sm">
-              <ul>
-                <li>
-                  <strong className="text-capitalize">
-                    {weatherData.description}
-                  </strong>
-                </li>
-                <li>Feels like: {Math.round(weatherData.feels_like)} °</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="physics">
-          <ul className="physics-list">
-            <li>Humidity: {weatherData.humidity} %</li>
-            <li>Wind: {weatherData.wind} km/h</li>
-          </ul>
-        </div>
-      </div>
-    );
-  } else {
+  function search() {
     const apiKey = "ebef9ca4a8de66ed586fac628fade056";
-    const city = "London";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-    axios.get(apiUrl).then(handleSubmit);
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+  if (weatherData.ready) {
+    return (
+      <WeatherInfo
+        data={weatherData}
+        onSubmit={handleSubmit}
+        onCityChange={handleCityChange}
+      />
+    );
+  } else {
+    search();
 
     return "Loading...";
   }
