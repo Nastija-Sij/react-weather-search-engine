@@ -23,6 +23,8 @@ export default function Weather(props) {
       feels_like: response.data.main.feels_like,
       description: response.data.weather[0].description,
     });
+    console.log("ICON CODE FROM API:", response.data.weather[0].icon);
+
   }
   function search() {
     const apiKey = "ebef9ca4a8de66ed586fac628fade056";

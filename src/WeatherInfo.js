@@ -1,8 +1,9 @@
 import React from "react";
 import FormattedDate from "./FormattedDay";
+import WeatherIcon from "./WeatherIcon";
+import WeatherTemperature from "./WeatherTemperature";
 
 export default function WeatherInfo(props) {
-
   return (
     <div className="weather-info">
       <header className="App-header">
@@ -31,20 +32,11 @@ export default function WeatherInfo(props) {
         <div className="current-weather-container">
           <div className="current-weather-block row">
             <div className="weather-icon col-sm-3">
-              <img
-                src={`https://openweathermap.org/img/wn/${props.data.icon}@2x.png`}
-                alt={props.data.description}
-                className="image-icon"
-              />
+              <WeatherIcon code={props.data.icon} className="image-icon" />
             </div>
+
             <div className="weather-description col-sm-5 row">
-              <h2 className="current-temperature col-sm-8">
-                {Math.round(props.data.temperature)}
-              </h2>
-              <div className="temperature-measurement col-sm-4">
-                {" "}
-                <a href="">°C</a> | <a href="">°F</a>
-              </div>
+              <WeatherTemperature celsius={props.data.temperature} />
             </div>
 
             <div className="weather-feels col-sm">

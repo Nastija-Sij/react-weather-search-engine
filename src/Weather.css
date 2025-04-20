@@ -21,7 +21,7 @@ color: var(--header-text-color);
 .current-day {
     color: var(--header-text-color)
 }
-.image-icon {
+.image-icon canvas{
     width: 90px;
     margin: 10px auto;
     align-items: center;
