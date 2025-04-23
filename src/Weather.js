@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./Weather.css";
+import WeatherForecast from "./WeatherForecast";
 
 import WeatherInfo from "./WeatherInfo";
+
 import axios from "axios";
 
 export default function Weather(props) {
@@ -10,8 +12,8 @@ export default function Weather(props) {
     ready: false,
   }); /*it has a key of READY but it FALSE by default*/
 
-  function handleResponse(response) {
-    /*console.log(response.data);*/
+  function handleResponse(response) {  
+    console.log(response.data);
     setWeatherData({
       ready: true,
       date: new Date(response.data.dt * 1000),
@@ -22,9 +24,10 @@ export default function Weather(props) {
       icon: response.data.weather[0].icon,
       feels_like: response.data.main.feels_like,
       description: response.data.weather[0].description,
-    });
-    console.log("ICON CODE FROM API:", response.data.weather[0].icon);
 
+      coord: response.data.coord,
+    });
+    /*console.log("ICON CODE FROM API:", response.data.weather[0].icon);*/
   }
   function search() {
     const apiKey = "ebef9ca4a8de66ed586fac628fade056";
@@ -43,11 +46,16 @@ export default function Weather(props) {
   }
   if (weatherData.ready) {
     return (
-      <WeatherInfo
-        data={weatherData}
-        onSubmit={handleSubmit}
-        onCityChange={handleCityChange}
-      />
+      <div>
+        <WeatherInfo
+          data={weatherData}
+          onSubmit={handleSubmit}
+          onCityChange={handleCityChange}
+        />
+        <div className="forecast-section">
+          <WeatherForecast coordinates={weatherData.coord} />
+        </div>
+      </div>
     );
   } else {
     search();

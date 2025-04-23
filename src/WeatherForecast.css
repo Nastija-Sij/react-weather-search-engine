@@ -1,0 +1,36 @@
+:root {
+  --main-bg-color: #7d8aa4;
+  --main-text-color: #e6e6e6;
+  --header-bg-color: #20232a;
+  --header-text-color: #ffffff;
+}
+.weather-forecast-container {
+  width: 540px;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: var(--main-bg-color);
+  border: none;
+  border-radius: 7px;
+}
+.forecast-day {
+
+  border-radius: 5px;
+  text-align: center;
+padding: 5px 0;
+  color: var(--header-text-color)
+}
+.day {
+  margin-bottom: 14px;
+  font-size: 18px;
+}
+.high-low-temp {
+  font-size: 18px;
+  margin-top: 10px;
+}
+.high-temp {
+  margin-right: 2px;
+}
+.low-temp {
+  margin-left: 2px;
+  color:#e6e6e6c6;
+}

@@ -10,7 +10,6 @@
   margin: 0px auto;
     padding: 20px;
   background-color: var(--main-bg-color);
-  border: 1px solid #ccc;
   border-radius: 7px;
 }
 .city-name {
@@ -56,3 +55,6 @@ ul {
     margin-top: 20px;
     color: var(--main-text-color)
 }
+hr {
+  color:  white;
+  }
